@@ -6,32 +6,32 @@ class Calculator {
 }
 
 
-clear() {
+function clear() {
     this.currentOperand = ''
     this.previousOperand = ''
     this.operation = undefined
 }
 
-delete() {
+function deleteLast() {
      
 }
 
-appendNumber(number) {
+function appendNumber(number) {
     if (number === '.' && this.currentOperand.includes('.')) return 
     this.currentOperand.toString() + number.toString()
 }
 
-chooseOperation(operation) {
+function chooseOperation(operation) {
     this.operation = operation
     this.previousOperand = this.currentOperand
     this.currentOperand = ''
 }
 
-compute() {
+function compute() {
 
 }
 
-updateDisplay() {
+function updateDisplay() {
     this.currentOperandTextElement.innerText = this.currentOperand
     this.previousOperandTextElement.innerText = this.previousOperand
 }
