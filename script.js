@@ -3,25 +3,23 @@ class Calculator {
         this.previousOperandTextElement = previousOperandTextElement
         this.currentOperandTextElement = currentOperandTextElement
     }
-}
 
+    clear() {
+        this.currentOperand = ''
+        this.previousOperand = ''
+        this.operation = undefined
+    }
 
-function clear() {
-    this.currentOperand = ''
-    this.previousOperand = ''
-    this.operation = undefined
-}
+    deleteLast() {
+        this.currentOperand = this.currentOperand.toString().slice(0, -1)
+    }
 
-function deleteLast() {
-     this.currentOperand = this.currentOperand.toString().slice(0, -1)
-}
-
-function appendNumber(number) {
+    appendNumber(number) {
     if (number === '.' && this.currentOperand.includes('.')) return 
     this.currentOperand.toString() + number.toString()
-}
+    }
 
-function chooseOperation(operation) {
+    chooseOperation(operation) {
     if (this.currentOperand === '') return     
     if (this.previousOperand !== '') {
         this.compute()
@@ -29,40 +27,42 @@ function chooseOperation(operation) {
     this.operation = operation
     this.previousOperand = this.currentOperand
     this.currentOperand = ''
-}
-
-function compute() {
-    let computation
-    const prev = parseFloat(this.previousOperand)
-    const current = parseFloat(this.currentOperand)
-    if (isNan(prev) || isNan(current)) return
-    switch (this.operation) {
-        case '+' :
-            computation = prev + current
-            break
-        case '-' :
-            computation = prev - current
-            break
-        case '*' :
-            computation = prev * current
-            break
-        case '÷' :
-            computation = prev / current
-            break
-        default:
-            return
     }
-    this.currentOperand = computation
-    this.operation = undefined
-    this.previousOperand = ''    
+
+    compute() {
+        let computation
+        const prev = parseFloat(this.previousOperand)
+        const current = parseFloat(this.currentOperand)
+        if (isNan(prev) || isNan(current)) return
+        switch (this.operation) {
+            case '+' :
+                computation = prev + current
+                break
+            case '-' :
+                computation = prev - current
+                break
+            case '*' :
+                computation = prev * current
+                break
+            case '÷' :
+                computation = prev / current
+                break
+            default:
+                return
+        }
+        this.currentOperand = computation
+        this.operation = undefined
+        this.previousOperand = ''    
+    }
+
+    updateDisplay() {
+        this.currentOperandTextElement.innerText = this.currentOperand
+        if (this.operation != null) {
+            this.previousOperandTextElement.innerText = `${this.previousOperand} ${this.opeartion}`
+        }
+    }
 }
-
-function updateDisplay() {
-    this.currentOperandTextElement.innerText = this.currentOperand
-    this.previousOperandTextElement.innerText = this.previousOperand
-}
-
-
+ 
 
 const numberButtons = document.querySelectorAll('[data-number]')
 const operationButtons = document.querySelectorAll(['data-operation'])
