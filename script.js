@@ -13,7 +13,7 @@ function clear() {
 }
 
 function deleteLast() {
-     
+     this.currentOperand = this.currentOperand.toString().slice(0, -1)
 }
 
 function appendNumber(number) {
