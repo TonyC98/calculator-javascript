@@ -10,7 +10,7 @@ class Calculator {
         this.operation = undefined
     }
 
-    deleteLast() {
+    delete() {
         this.currentOperand = this.currentOperand.toString().slice(0, -1)
     }
 
@@ -99,7 +99,7 @@ allClearButton.addEventListener('click', button => {
 })
 
 deleteButton.addEventListener('click', button => {
-    calculator.clear()
+    calculator.delete()
     calculator.updateDisplay()
 })
 
