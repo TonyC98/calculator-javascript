@@ -2,6 +2,7 @@ class Calculator {
     constructor(previousOperandTextElement, currentOperandTextElement) {
         this.previousOperandTextElement = previousOperandTextElement
         this.currentOperandTextElement = currentOperandTextElement
+        this.clear()
     }
 
     clear() {
@@ -16,7 +17,7 @@ class Calculator {
 
     appendNumber(number) {
     if (number === '.' && this.currentOperand.includes('.')) return 
-    this.currentOperand.toString() + number.toString()
+    this.currentOperand = this.currentOperand.toString() + number.toString()
     }
 
     chooseOperation(operation) {
@@ -63,8 +64,7 @@ class Calculator {
         if (isNaN(integerDigits)) {
             integerDisplay = ''
         } else {
-            integerDisplay = integerDigits.toLocaleString('en', {
-                maximumFractionDigits: 0 })
+            integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 })
         }
         if (decimalDigits != null) {
             return `${integerDisplay}.${decimalDigits}`
@@ -78,7 +78,7 @@ class Calculator {
             this.getDisplayNumber(this.currentOperand)
         if (this.operation != null) {
             this.previousOperandTextElement.innerText =
-            `${this.getDisplayNumber(this.previousOperand)} ${this.opeartion}`
+            `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
         } else {
             this.previousOperandTextElement.innerText = ''
         }
