@@ -66,6 +66,11 @@ class Calculator {
             integerDisplay = integerDigits.toLocaleString('en', {
                 maximumFractionDigits: 0 })
         }
+        if (decimalDigits != null) {
+            return `${integerDisplay}.${decimalDigits}`
+        } else {
+            return integerDisplay
+        }
     }
 
     updateDisplay() {
@@ -74,6 +79,8 @@ class Calculator {
         if (this.operation != null) {
             this.previousOperandTextElement.innerText =
             `${this.getDisplayNumber(this.previousOperand)} ${this.opeartion}`
+        } else {
+            this.previousOperandTextElement.innerText = ''
         }
     }
 }
